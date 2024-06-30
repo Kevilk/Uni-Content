@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Computer Component Order Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://www.transparenttextures.com/patterns/diagmonds.png'), linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 100%), url('https://source.unsplash.com/random/1600x900?nature,water');
+      background-size: cover;
+      filter: blur(5px);
+      z-index: -1;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      transform: perspective(600px) rotateY(0deg);
+      transition: transform 0.5s;
+    }
+
+    .container:hover {
+      transform: perspective(600px) rotateY(10deg);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    select, input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #totalPrice {
+      font-weight: bold;
+      color: #4caf50;
+    }
+  </style>
+</head>
+<body>
+  <div class="background"></div>
+  <div class="container">
+    <h1>Computer Component Order Form</h1>
+    
+    <form id="orderForm">
+      <div class="form-group">
+        <label for="cpu">CPU:</label>
+        <select id="cpu" name="cpu">
+          <option value="0">Select CPU</option>
+          <option value="100">CPU A - $100</option>
+          <option value="150">CPU B - $150</option>
+          <option value="200">CPU C - $200</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="gpu">GPU:</label>
+        <select id="gpu" name="gpu">
+          <option value="0">Select GPU</option>
+          <option value="200">GPU X - $200</option>
+          <option value="300">GPU Y - $300</option>
+          <option value="400">GPU Z - $400</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="ram">RAM:</label>
+        <select id="ram" name="ram">
+          <option value="0">Select RAM</option>
+          <option value="50">4GB RAM - $50</option>
+          <option value="100">8GB RAM - $100</option>
+          <option value="150">16GB RAM - $150</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" min="1" value="1">
+      </div>
+      
+      <div class="form-group">
+        <label>Total Price:</label>
+        <span id="totalPrice">$0</span>
+      </div>
+      
+      <button type="button" onclick="calculateTotal()">Calculate Total</button>
+      <button type="submit">Submit Order</button>
+    </form>
+  </div>
+
+  <script>
+    function calculateTotal() {
+      // Fetch selected values
+      var cpuPrice = parseInt(document.getElementById("cpu").value);
+      var gpuPrice = parseInt(document.getElementById("gpu").value);
+      var ramPrice = parseInt(document.getElementById("ram").value);
+      var quantity = parseInt(document.getElementById("quantity").value);
+
+      // Calculate total price
+      var totalPrice = cpuPrice + gpuPrice + ramPrice;
+      totalPrice *= quantity;
+
+      // Display total price
+      document.getElementById("totalPrice").textContent = "$" + totalPrice;
+    }
+
+    document.getElementById("orderForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent form submission for demonstration
+      alert("Order submitted!"); // Replace with actual submission logic
+    });
+  </script>
+</body>
+</html>
